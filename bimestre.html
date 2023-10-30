@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: green;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h2 {
+            color: #000000;
+        }
+
+        input {
+            width: 80px;
+        }
+
+        h3 {
+        text-align: center;
+        color: black;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 50px;
+
+        }
+    </style>
+    <title>Sistema de notas bimestral   
+    </title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Sistema de Notas por Bimestre</h2>
+
+        <h2>
+        <label for="portugues">Materia desejada : </label>
+        <input type="number" id="portugues-b1" min="0" max="10" placeholder="B1">
+        <input type="number" id="portugues-b2" min="0" max="10" placeholder="B2">
+        <input type="number" id="portugues-b3" min="0" max="10" placeholder="B3">
+        <input type="number" id="portugues-b4" min="0" max="10" placeholder="B4"><br>
+        </h2>
+
+        <button onclick="calcularMedia()">Calcular Média</button>
+
+        <h2>Média: <span id="media">---</span></h2>
+    </div>
+        <h3>E ai, foi aprovado rs?!</h3>
+    <script>
+        function calcularMedia() {
+            const notasPorBimestre = [];
+
+            for (let i = 1; i <= 4; i++) {
+                const notasMateria = [
+                    parseFloat(document.getElementById(`portugues-b${i}`).value),
+                    // Adicione as outras notas das matérias aqui
+                ];
+
+                if (notasMateria.some(isNaN)) {
+                    alert('Por favor, insira todas as notas corretamente.');
+                    return;
+                }
+
+                const mediaMateria = notasMateria.reduce((a, b) => a + b, 0) / notasMateria.length;
+                notasPorBimestre.push(mediaMateria);
+            }
+
+            // Calcular a média anual
+            const mediaAnual = notasPorBimestre.reduce((a, b) => a + b, 0) / notasPorBimestre.length;
+
+            // Exibir a média
+            document.getElementById('media').textContent = mediaAnual.toFixed(2);
+        }
+    </script>
+</body>
+
+</html>

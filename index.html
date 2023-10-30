@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>calcular media de unica materia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: green;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h2 {
+            color: #000000;
+        }
+
+        input {
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Sistema de Notas</h2>
+
+        <h2><label for="portugues">Resultado da Prova(adicione a nota de atividade junto): </label>
+            <input type="number" id="portugues" min="0" max="08"><br>
+        </h2>
+        <h2><label for="redacao">Simulado de Redação: </label>
+            <input type="number" id="redacao" min="0" max="08"><br>
+
+            <label for="scg">Simulado SCG: </label>
+            <input type="number" id="scg" min="0" max="08"><br>
+
+            <button onclick="calcularMedia()">Calcular Média</button>
+
+            <h2>Média: <span id="media">---</span></h2>
+        </h2>
+    </div>
+
+    <script>
+        function calcularMedia() {
+            const notas = [
+                parseFloat(document.getElementById('portugues').value),
+                parseFloat(document.getElementById('redacao').value),
+                parseFloat(document.getElementById('scg').value)
+            ];
+
+            if (notas.some(isNaN)) {
+                alert('Insira as notas, Nunca adiante o Processo!!');
+                return;
+            }
+
+            // Calcular a média
+            const media = notas.reduce((a, b) => a + b, 0) / 3;
+
+            // Exibir a média
+            document.getElementById('media').textContent = media.toFixed(2);
+        }
+    </script>
+    <a href="bimestre.html" target="_blank">
+        <div id="next">
+            <strong>Proximo Passo</strong>
+        </div>
+    </a>
+    <style>
+        div#next {
+            display: inline-block;
+            color: black;
+            background-color: white;
+            width: 112px;
+            height: 50px;
+            position: absolute;
+            top: 40%;
+            left: 47%;
+            border-radius: 3px;
+            text-align: center;
+            font-size: 1.3em;
+
+        }
+    </style>
+</body>
+
+</html>
